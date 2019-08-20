@@ -1,10 +1,15 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { Form, Field, Formik, withFormik } from "formik";
 import * as Yup from "yup";
 
 const Login = ({ errors, touched, values }) => {
- 
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      return <Redirect to="/FriendsList" />;
+    }
 
   return (
     <div className="form">
@@ -43,12 +48,13 @@ const FormikLogin = withFormik({
    
   }),
 
-  handleSubmit(values) {
+  handleSubmit(values, formikBag) {
     // console.log("Form submited", values)
 
     axios
       .post(`http://localhost:5000/api/login`, values)
-      .then(res => localStorage.setItem('token', res.data.payload))
+      .then(res => localStorage.setItem('token', res.data.token));
+      formikBag.props.history.push("/FriendsList")
       
       .catch(err => console.log(err.response))
   }

@@ -19,7 +19,7 @@ function App() {
             <Link to="/protected">Protected Page</Link>
           </li>
         </ul>
-        <Route path="/login" component={Login} />
+        <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={FriendsList} />
         {/* <PrivateRoute path="/anotherRoute" component={SomeOtherComponent} /> */}
       </div>

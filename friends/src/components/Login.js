@@ -7,9 +7,10 @@ import * as Yup from "yup";
 const Login = ({ errors, touched, values }) => {
     const token = localStorage.getItem("token");
 
-    if (token) {
-      return <Redirect to="/FriendsList" />;
-    }
+    // if (token) {
+    //   return  <Redirect to="/FriendsList" /> 
+    //   {/* && localStorage.removeItem("token") </> */}
+    // }
 
   return (
     <div className="form">
@@ -48,13 +49,15 @@ const FormikLogin = withFormik({
    
   }),
 
-  handleSubmit(values, formikBag) {
+  handleSubmit(values, {props}) {
     // console.log("Form submited", values)
 
     axios
       .post(`http://localhost:5000/api/login`, values)
-      .then(res => localStorage.setItem('token', res.data.token));
-      formikBag.props.history.push("/FriendsList")
+      .then(res => localStorage.setItem('token', res.data.token))
+    //   props.history.push("/FriendsList")
+      
+      
       
       .catch(err => console.log(err.response))
   }

@@ -42,9 +42,10 @@ const FriendsList = ()=> {
      {friends.length > 0 ? friends.map(el => 
                 <p> {el.name}</p>
             ): null}
-             <FormikAddFriend />
-      {/* <button>
-        Friends
+            <FormikAddFriend friends={friends}/>
+             
+      {/* <button onClick={<FormikAddFriend friends={friends}/>}>
+        Add a Friend
       </button> */}
     </>
   );

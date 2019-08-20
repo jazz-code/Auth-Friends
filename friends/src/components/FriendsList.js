@@ -2,28 +2,32 @@ import React, { useEffect, useState } from "react";
 import axios from "axios"
 import {axiosWithAuth} from "../ultils/axiosWithAuth"
 
+import FormikAddFriend from "./AddFriend"
+
 const FriendsList = ()=> {
-  const [message, setMessage] = useState([]);
+  const [friends, setFriends] = useState([]);
+  console.log("friends state",friends)
+  
   useEffect(() => {
-    // const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const url =
       "http://localhost:5000/api/friends";
 
-    // if (token) {
+    
       axiosWithAuth()
       axios
-      /*, {
+      
+        .get(url, {
           headers: {
-            Authorization: `${token}`
+            Authorization: token
           }
-        } */
-        .get(url)
+        })
         .then(response => {
-          // setMessage(response.data.message)
-          setMessage(console.log(response))
+          const friends = (response.data)
+          setFriends(friends)
         })
         .catch(e => {
-          console.log(e.response.data);
+          console.log(e.response);
           localStorage.removeItem("token");
           // history.push("/");
         });
@@ -33,10 +37,15 @@ const FriendsList = ()=> {
   return (
     <>
       <div>Friends List</div>
-      <div>{message}</div>
-      <button>
+     {friends.length}
+    
+     {friends.length > 0 ? friends.map(el => 
+                <p> {el.name}</p>
+            ): null}
+             <FormikAddFriend />
+      {/* <button>
         Friends
-      </button>
+      </button> */}
     </>
   );
 }

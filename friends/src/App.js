@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 
-import FriendsList from "./components/FriendsList"
+import FormikFriendsList from "./components/FriendsList"
 import Login from './components/Login';
 
 import PrivateRoute from "./components/PrivateRoute"
@@ -20,7 +20,7 @@ function App() {
           </li>
         </ul>
         <Route exact path="/login" component={Login} />
-        <PrivateRoute exact path="/protected" component={FriendsList} />
+        <PrivateRoute exact path="/protected" component={FormikFriendsList} />
         {/* <PrivateRoute path="/anotherRoute" component={SomeOtherComponent} /> */}
       </div>
     </Router>

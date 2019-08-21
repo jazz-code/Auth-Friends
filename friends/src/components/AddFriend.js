@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import {axiosWithAuth} from "../ultils/axiosWithAuth"
+import axiosWithAuth from "../ultils/axiosWithAuth"
 import { Form, Field, Formik, withFormik } from "formik";
 import * as Yup from "yup";
 
@@ -65,7 +65,6 @@ const FormikAddFriend = withFormik({
   handleSubmit(values) {
     
     axiosWithAuth()
-      axios
         .post("http://localhost:5000/api/friends", values)
       
       .then(res => localStorage.setItem('token', res.data))

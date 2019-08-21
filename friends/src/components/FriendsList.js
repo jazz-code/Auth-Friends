@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
-import {axiosWithAuth} from "../ultils/axiosWithAuth"
+import axiosWithAuth from "../ultils/axiosWithAuth"
 
 import FormikAddFriend from "./AddFriend"
 
